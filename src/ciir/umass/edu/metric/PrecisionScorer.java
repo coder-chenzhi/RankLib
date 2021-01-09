@@ -12,6 +12,7 @@ package ciir.umass.edu.metric;
 import java.util.Arrays;
 
 import ciir.umass.edu.learning.RankList;
+import ciir.umass.edu.utilities.Sorter;
 
 /**
  * @author vdang
@@ -33,10 +34,12 @@ public class PrecisionScorer extends MetricScorer {
 		int size = k;
 		if(k > rl.size() || k <= 0)
 			size = rl.size();
-		
+
+		int[] descIndex = Sorter.sort(getRelevanceLabels(rl), false);
+
 		for(int i=0;i<size;i++)
 		{
-			if(rl.get(i).getLabel() > 0.0)//relevant
+			if(descIndex[i] <= size)//relevant
 				count++;
 		}
 		return ((double)count)/size;
@@ -71,7 +74,7 @@ public class PrecisionScorer extends MetricScorer {
 				int c = getBinaryRelevance(rl.get(j).getLabel()) - getBinaryRelevance(rl.get(i).getLabel()); 
 				changes[i][j] = changes[j][i] = ((float)c)/size;
 			}
-		}			
+		}
 		return changes;
 	}
 	private int getBinaryRelevance(float label)
