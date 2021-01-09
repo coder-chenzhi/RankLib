@@ -93,8 +93,8 @@ public class Evaluator {
 			System.out.println("\t\t\t\t7: ListNet");
 			System.out.println("\t\t\t\t8: Random Forests");
 			System.out.println("\t\t\t\t9: Linear regression (L2 regularization)");
-			System.out.println("\t[ -feature <file> ]\tFeature description file: list features to be considered by the learner, each on a separate line");
-			System.out.println("\t\t\t\tIf not specified, all features will be used.");
+			System.out.println("\t[ -feature <file> ]\tFeature description file (each on a separate line) or feature index lists (separated by comma): ");
+			System.out.println("\t\t\t\tFeatures to be considered by the learner. If not specified, all features will be used.");
 			//System.out.println("\t[ -metric2t <metric> ]\tMetric to optimize on the training data. Supported: MAP, NDCG@k, DCG@k, P@k, RR@k, BEST@k, ERR@k (default=" + trainMetric + ")");
 			System.out.println("\t[ -metric2t <metric> ]\tMetric to optimize on the training data.  " +
                                            "Supported: MAP, NDCG@k, DCG@k, P@k, RR@k, ERR@k (default=" + trainMetric + ")");

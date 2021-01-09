@@ -255,7 +255,7 @@ public class FeatureManager {
 
 
 	/**
-	 * Read features specified in an input feature file. Expecting one feature per line. 
+	 * Read features specified in input feature lists (separated by comma ',') or an input feature file (expecting one feature per line).
 	 * @param featureDefFile
 	 * @return
 	 */
@@ -263,6 +263,15 @@ public class FeatureManager {
 	{
 		int[] features = null;
 		List<String> fids = new ArrayList<>();
+
+		if (!(new File(featureDefFile)).exists()) {
+			String[] strIndexes = featureDefFile.split(",");
+			int[] intIndexes = new int[strIndexes.length];
+			for (int i = 0; i < strIndexes.length; i++) {
+				intIndexes[i] = Integer.parseInt(strIndexes[i]);
+			}
+			return intIndexes;
+		}
 
 		try (BufferedReader in = FileUtils.smartReader(featureDefFile)) {
 			String content = "";
