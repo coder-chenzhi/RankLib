@@ -28,7 +28,8 @@ public class DCGScorer extends MetricScorer {
 				discount[i] = 1.0/SimpleMath.logBase2(i+2);
 			gain = new double[6];
 			for(int i=0;i<6;i++)
-				gain[i] = (1<<i) - 1;//2^i-1
+//				gain[i] = (1<<i) - 1;//2^i-1
+				gain[i] = i - 1;//2^i-1
 		}
 	}
 	public DCGScorer(int k)
@@ -42,7 +43,8 @@ public class DCGScorer extends MetricScorer {
 				discount[i] = 1.0/SimpleMath.logBase2(i+2);
 			gain = new double[6];
 			for(int i=0;i<6;i++)
-				gain[i] = (1<<i) - 1;//2^i - 1
+//				gain[i] = (1<<i) - 1;//2^i - 1
+				gain[i] = i - 1;//2^i - 1
 		}
 	}
 	public MetricScorer copy()
@@ -121,7 +123,8 @@ public class DCGScorer extends MetricScorer {
 		double[] tmp = new double[cacheSize];
 		System.arraycopy(gain, 0, tmp, 0, gain.length);
 		for(int i=gain.length;i<tmp.length;i++)
-			tmp[i] = (1<<i) - 1;//2^i - 1
+//			tmp[i] = (1<<i) - 1;//2^i - 1
+			tmp[i] = (i) - 1;//2^i - 1
 		gain = tmp;
 		return gain[rel];
 	}
