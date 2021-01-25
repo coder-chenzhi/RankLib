@@ -283,6 +283,12 @@ public class FeatureHistogram {
 		if(samplingRate < 1)//need to do sub sampling (feature sampling)
 		{
 			int size = (int)(samplingRate * features.length);
+			// added by Coder-chenzhi at 2021-01-25
+			// ensure that the size is not zero when the size of features is too small,
+			// or it will throw java.lang.ArithmeticException: / by zero
+			if (size == 0) {
+				size = 1;
+			}
 			usedFeatures = new int[size];
 			//put all features into a pool
 			List<Integer> fpool = new ArrayList<Integer>();
